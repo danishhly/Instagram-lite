@@ -76,17 +76,17 @@ instagram-lite/
 git clone https://github.com/<your-username>/Instagram-lite.git
 cd Instagram-lite
 ```
-### **2️⃣ Install dependencies
+### **2️⃣ Install dependencies**
 ```
 npm install
 ```
-### **3️⃣ Configure environment variables
+### **3️⃣ Configure environment variables**
 ```
 PORT=5000
 MONGO_URI={uri}
 REDIS_URL={url}
 ```
-### **4️⃣ Start Redis using Docker
+### **4️⃣ Start Redis using Docker**
 ```
 docker run -d --name redis -p 6379:6379 redis
 ```
@@ -94,3 +94,64 @@ docker run -d --name redis -p 6379:6379 redis
 ```
 docker exec -it redis redis-cli ping
 ```
+**Expected output:**
+```
+PONG
+```
+### **5️⃣ Start the backend**
+```
+npm run dev
+```
+**you'll see:**
+```
+Server running on 5000
+MongoDB connected
+Redis connected
+```
+
+## **API Testing (Postman)**
+✔ Register User
+
+POST
+/api/users/register
+```
+{
+  "username": "danish",
+  "password": "123"
+}
+```
+✔ Follow a User
+
+POST
+/api/users/follow
+```
+{
+  "followerId": "userA_id",
+  "followingId": "userB_id"
+}
+```
+✔ Create Post
+
+POST
+/api/posts
+```
+{
+  "userId": "userB_id",
+  "content": "My first post!"
+}
+```
+
+This automatically triggers fan-out worker.
+
+✔ Get Home Feed
+
+GET
+/api/feed/<userId>
+
+Returns:
+
+Posts from followed users
+
+Sorted by time
+
+Cached via Redis

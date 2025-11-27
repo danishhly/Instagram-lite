@@ -161,14 +161,20 @@ Cached via Redis
 ### **🧠 Architecture Summary**
 **⭐ Fan-Out on Write**
 
--User posts content
+-User posts content 
+
 -All followers are fetched
+
 -A feed entry is inserted for each follower
+
 -Feed cached in Redis
 
 **⭐ Why Fan-Out?**
 
 -Faster reads
+
 -Instagram, TikTok, Facebook all use it
+
 -Ideal when read-heavy, write-moderate
+
 ---

@@ -42,3 +42,55 @@ A simplified backend inspired by **Instagram’s real feed architecture**, built
 
 ## 📂 **Project Structure**
 
+instagram-lite/
+│── src/
+│ ├── config/
+│ │ ├── db.js
+│ │ └── redis.js
+│ ├── controllers/
+│ │ ├── userController.js
+│ │ ├── postController.js
+│ │ └── feedController.js
+│ ├── models/
+│ │ ├── user.js
+│ │ ├── follow.js
+│ │ ├── post.js
+│ │ └── feed.js
+│ ├── routes/
+│ │ ├── userRoutes.js
+│ │ ├── postRoutes.js
+│ │ └── feedRoutes.js
+│ ├── workers/
+│ │ └── fanoutWorker.js
+│ └── server.js
+│── .env
+│── package.json
+
+
+---
+
+## ⚙️ **Installation & Setup**
+
+### **1️⃣ Clone the repository**
+```bash
+git clone https://github.com/<your-username>/Instagram-lite.git
+cd Instagram-lite
+```
+### **2️⃣ Install dependencies
+```
+npm install
+```
+### **3️⃣ Configure environment variables
+```
+PORT=5000
+MONGO_URI={uri}
+REDIS_URL={url}
+```
+### **4️⃣ Start Redis using Docker
+```
+docker run -d --name redis -p 6379:6379 redis
+```
+**test**
+```
+docker exec -it redis redis-cli ping
+```
